@@ -5,7 +5,7 @@ const ExpenseForm = () => {
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
   const { dispatch } = useExpenseContext();
-  const inputRef = useRef(null); // 🎯 Автоматический фокус
+  const inputRef = useRef(null); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const ExpenseForm = () => {
 
     setText("");
     setAmount("");
-    inputRef.current.focus(); // 🎯 Сразу фокус на поле ввода
+    inputRef.current.focus(); 
   };
 
   return (

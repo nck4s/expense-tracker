@@ -1,9 +1,8 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 
-// 🎯 Начальное состояние (Загружаем из localStorage)
 const initialState = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// 🎯 Функция-редьюсер
+
 function expenseReducer(state, action) {
   switch (action.type) {
     case "ADD_EXPENSE":
@@ -15,14 +14,13 @@ function expenseReducer(state, action) {
   }
 }
 
-// 🎯 Создаём Context
+
 const ExpenseContext = createContext();
 
-// 🎯 Провайдер (Оборачивает приложение)
+
 export function ExpenseProvider({ children }) {
   const [expenses, dispatch] = useReducer(expenseReducer, initialState);
 
-  // ✅ Сохраняем в localStorage при изменении списка
   useEffect(() => {
     localStorage.setItem("expenses", JSON.stringify(expenses));
   }, [expenses]);
@@ -34,7 +32,6 @@ export function ExpenseProvider({ children }) {
   );
 }
 
-// 🎯 Кастомный хук для доступа к данным
 export function useExpenseContext() {
   return useContext(ExpenseContext);
 }
